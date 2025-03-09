@@ -5,10 +5,7 @@ const Post = ({ postData }) => {
   const { deletePost } = useContext(PostList);
   return (
     <>
-      <div
-        className="card"
-        style={{ "maxWidth": "30rem", margin: "20px 15px" }}
-      >
+      <div className="card" style={{ maxWidth: "30rem", margin: "25px 35px" }}>
         <div className="card-body">
           <h5 className="card-title">
             {postData.title}
@@ -20,11 +17,14 @@ const Post = ({ postData }) => {
             </span>
           </h5>
           <p className="card-text">{postData.descipition}</p>
-          {postData.hastages.map((tags) => (
+          {postData.hastags.map((tags) => (
             <span key={tags}>
-              <button  className="btn btn-primary hastag" > # {tags}</button>
+              <button className="btn btn-primary hastag"> # {tags}</button>
             </span>
           ))}
+          <div className="alert alert-info reactions" role="alert">
+            your post has been reacted by {postData.reactions} people
+          </div>
         </div>
       </div>
     </>

@@ -12,6 +12,9 @@ const postListReducer = (currentPostList, action) => {
     newPostList = currentPostList.filter(
       (post) => post.id !== action.payload.id
     );
+  } else if (action.type === "Add_post") {
+    newPostList = [action.payload,...currentPostList];
+    console.log(action.payload)
   }
   return newPostList;
 };
@@ -24,9 +27,9 @@ const PostListProvider = ({ children }) => {
       title: "going to mumbai",
       descipition:
         "gust wen to mumbai and stayed at nani's house and enjoyed very much",
-      reactions: "0",
+      reactions: "5",
       user: "user_99",
-      hastages: ["vacation", "enjoyed", "happy"],
+      hastags: ["vacation", "enjoyed", "happy"],
     },
     {
       id: "2",
@@ -35,7 +38,7 @@ const PostListProvider = ({ children }) => {
         "i am totally suprised that i have completed my four years of engeenering i was having a logt of  managed fun but yet managed to pass my exams",
       reactions: "2",
       user: "user_69",
-      hastages: ["B-tech", "graduation ", "freinds"],
+      hastags: ["B-tech", "graduation ", "freinds"],
     },
   ];
 
@@ -44,9 +47,20 @@ const PostListProvider = ({ children }) => {
     default_post_data
   );
 
-  const addPost = () => {};
+  const addPost = (userId, title, description, reactions, hastags) => {
+    dispatchPostList({
+      type: "Add_post",
+      payload: {
+        id: Date.now(),
+        title: title,
+        descipition: description,
+        reactions: reactions,
+        user: userId,
+        hastags: hastags,
+      },
+    });
+  };
   const deletePost = (id) => {
-    console.log(`the post deleted ${id}`);
     dispatchPostList({
       type: "Delete_post",
       payload: {

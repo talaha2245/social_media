@@ -10,3 +10,15 @@
 .hastag{
   margin: 5px 4px;
 }
+.reactions{
+  margin:10px 0px 0px -5px;
+}
+.createPost{
+  margin-top: 50px;
+  width: 80%;
+  margin-left: 10%;
+}
+.postButton{
+  margin: 21px auto;
+  width: 89px;
+}
