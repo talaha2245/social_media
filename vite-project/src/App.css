@@ -1,0 +1,12 @@
+.Body{
+  display: flex;
+}
+.side{
+  height: 900px;
+}
+.Content{
+  width: 100%;
+}
+.hastag{
+  margin: 5px 4px;
+}
