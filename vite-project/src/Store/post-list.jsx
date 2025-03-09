@@ -7,7 +7,13 @@ export const PostList = createContext({
   deletePost: () => {},
 });
 const postListReducer = (currentPostList, action) => {
-  return currentPostList;
+  let newPostList = currentPostList;
+  if (action.type === "Delete_post") {
+    newPostList = currentPostList.filter(
+      (post) => post.id !== action.payload.id
+    );
+  }
+  return newPostList;
 };
 
 // Step 2: Create a Provider Component
@@ -39,7 +45,15 @@ const PostListProvider = ({ children }) => {
   );
 
   const addPost = () => {};
-  const deletePost = () => {};
+  const deletePost = (id) => {
+    console.log(`the post deleted ${id}`);
+    dispatchPostList({
+      type: "Delete_post",
+      payload: {
+        id,
+      },
+    });
+  };
 
   return (
     <PostList.Provider value={{ postList, addPost, deletePost }}>
